@@ -15,20 +15,6 @@ def emergency_shut_off():
     else:
         print("Activating self-destruct sequence... maybe.")
 
-def mimic():
-    """ Enables asynchronous computer-vision machine learning algorithm to input Owner activity as training data in real-time."""
-    if emergency_shut_off():
-        print("Activating mimic protocol.")
-        vision_input = load_vision("Cam Config 1") # Activates computer-vision hardware
-        vision_model = 'Alpha 1' # Specific machine learning model for the current application. Note: may need to be flexible for application swapping.
-        data_destination = ''
-        license = ''
-        connect_network('mimic', license, data_destination)
-    # For updates... follow @nf_qts on X.
-    # Have a wonderful day!
-    # Help people...
-    pass
-
 def load_vision(config):
     """ Activates computer vision cameras to gather real-world data."""
     print(f"Loading computer vision module {config}")
