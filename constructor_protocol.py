@@ -3,12 +3,6 @@ class Constructor:
     def __init__(self):
         self.id = 1
 
-def load_vision(config):
-    """ Activates computer vision cameras to gather real-world data."""
-
-    print(f"Loading computer vision module {config}")
-    pass
-
 def repair_self():
     pass
 
