@@ -1,6 +1,11 @@
 # AI
 Repo for providing public access to AI tools and services.
 
+
+NEED TO REMOVE FUNCTIONS THAT AREN'T ABSOLUTELY REQUIRED/STANDARD
+EXAMPLE: Navigation. Some models may be stationary?
+WILL HAVE TO DEEP DIVE EVERY SINGLE FUNCTION/DESIGN UNTIL WE GET IT RIGHT.
+
 File Guide:
 
 core_functions.py
