@@ -1,11 +1,11 @@
 class Robot:
     def __init__(self, id_number, robot_type):
-        self.id_number = id_number  # For hivemind use
-        self.task_queue = ["setup"]  # Initialize the task queue with setup command.
+        self.id = id_number  # For hivemind use
+        self.task_queue = ["setup"]  # Initialize as an empty list
         self.sensor_statuses = {}  # Needs to be able to store data about system health and environment.
         self.onboard_libraries = {}  # For storing custom protocols/functionality
         self.robot_type = robot_type  # To easily connect the bot to the correct APIs/services/functions
-        self.owner = ''  # To make sure the appropriate person is benefiting from the bot.
+        self.owner = ''  # To make sure the appropriate person is benefitting from the bot.
 
     def emergency_shut_off(self):
         """ Checks for dangerous conditions and shuts down operations of robot to optimize damage control."""
@@ -30,8 +30,15 @@ class Robot:
         if "setup" in self.task_queue:
             print("Setting up bot now...")
             self.task_queue.remove("setup")
+            self.task_queue.append("status") # Queues a reload of task_queue list.
             print("Setup complete...")
-        print("Checking status now...")
+            self.check_status() # Reloads the status check to run the new task_queue
+        elif self.task_queue[0] == "status":
+            print("Performing a routine status check...")
+            print("Checking status now...")
+        else:
+            print("Need to actually figure out what this does lol. Probably just an error and red flag, then notify hivemind.")
+            pass
         # Add logic to check sensor statuses and other conditions
         # 1.) are sensors turned on?
         # 2.) are all sensors working?
@@ -78,5 +85,9 @@ class Robot:
         self.check_status()
         # Add your red flag calculation logic here
         return 0  # Placeholder for now
-
     
+    def virtual_training(self):
+        """ Runs bot through training simulations regularly to ensure maximum reliability and steady positive evolution."""
+        # Going to have to connect to the network and pass auth checks.
+        # Probably going to have to do hardware -> software compatibility checks, etc...
+        # Add training logic
