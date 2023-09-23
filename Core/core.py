@@ -1,7 +1,7 @@
 class Robot:
     def __init__(self, id_number, robot_type):
         self.id_number = id_number  # For hivemind use
-        self.task_queue = ["setup"]  # Initialize as an empty list
+        self.task_queue = ["setup"]  # Initialize the task queue with setup command.
         self.sensor_statuses = {}  # Needs to be able to store data about system health and environment.
         self.onboard_libraries = {}  # For storing custom protocols/functionality
         self.robot_type = robot_type  # To easily connect the bot to the correct APIs/services/functions
