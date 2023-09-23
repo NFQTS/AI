@@ -8,10 +8,9 @@ WILL HAVE TO DEEP DIVE EVERY SINGLE FUNCTION/DESIGN UNTIL WE GET IT RIGHT.
 
 File Guide:
 
-core_functions.py
+Core/core.py
 - Emergency Shut Off for safety purposes.
 - Status Check for data, longevity, and safety.
-- Navigation for productivity.
 - Environmental sensing for gathering data and productivity.
 - Wireless Networking for data and productivity.
 - Recharging/ Service for longevity/ productivity.
