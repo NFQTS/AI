@@ -1,11 +1,11 @@
 class Robot:
-    def __init__(self, id_number, robot_type):
+    def __init__(self, id_number, robot_type, owner):
         self.id = id_number  # For hivemind use
         self.task_queue = ["setup"]  # Initialize as an empty list
         self.sensor_statuses = {}  # Needs to be able to store data about system health and environment.
         self.onboard_libraries = {}  # For storing custom protocols/functionality
         self.robot_type = robot_type  # To easily connect the bot to the correct APIs/services/functions
-        self.owner = ''  # To make sure the appropriate person is benefitting from the bot.
+        self.owner = owner  # To make sure the appropriate person is benefitting from the bot.
 
     def emergency_shut_off(self):
         """ Checks for dangerous conditions and shuts down operations of robot to optimize damage control."""
@@ -25,17 +25,23 @@ class Robot:
         else:
             print("Activating self-destruct sequence... maybe.")
 
-    def check_status(self):
+    def check_status(self, owner_id):
         """ Runs a check of all sensors and systems to identify issues."""
-        if "setup" in self.task_queue:
+        if "setup" in self.task_queue: # Starts a first time setup protocol.
             print("Setting up bot now...")
-            self.task_queue.remove("setup")
+            print("Gathering ownership data...")
+            self.owner_check(owner_id) # Checks owner details and connects to hivemind.
+            self.task_queue.remove("setup") # Clears the setup protocol from task_queue.
             self.task_queue.append("status") # Queues a reload of task_queue list.
             print("Setup complete...")
-            self.check_status() # Reloads the status check to run the new task_queue
+            self.check_status(owner_id) # Reloads the status check to run the new task_queue
         elif self.task_queue[0] == "status":
             print("Performing a routine status check...")
             print("Checking status now...")
+            print("Status check complete...")
+            self.task_queue.remove("status") # Clears the status protocol from task_queue
+            print("'status' task removed from task_queue list.")
+
         else:
             print("Need to actually figure out what this does lol. Probably just an error and red flag, then notify hivemind.")
             pass
@@ -50,22 +56,30 @@ class Robot:
 
     def connect_network(self, purpose, credentials):
         """ Connects unit to the hivemind for 2-way data exchange."""
-        if self.credential_check(credentials, purpose):
+        if self.credential_check(purpose, credentials): 
             if purpose == 'owner_check':
-                print("Checking Owner licensing.")
-            print(f"Connecting to hivemind to execute the {purpose} function.")
-            url = f"https://hivemind.nfqts.com/api/v1?{purpose}"
+                print(f"Connecting to hivemind to execute the {purpose} function.")
+                url = f"https://hivemind.nfqts.com/api/v1?{purpose}"
+                if url: 
+                    print("Network connected...")
+                
 
-    def credential_check(self, auth, task):
+    def credential_check(self, task, auth):
         print(f"Checking credentials for {task}")
+        if task == "owner_check":
+            if auth == "Test":
+                return True
         # Add logic to check credentials
 
     def maintenance(self):
         """ Runs a maintenance protocol that handles charging, and sends a request for service to hivemind."""
         # Add maintenance logic
 
-    def owner_check(self):
+    def owner_check(self, owner_id):
         """ Authenticates the owner and robot are authorized for the current use."""
+        print("Connecting to hivemind to authenticate ownership...")
+        self.connect_network("owner_check", credentials= "Test")
+        print(f"The owner is: {owner_id}")
         # Add owner authentication logic
 
     def update(self):
