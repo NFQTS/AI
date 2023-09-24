@@ -8,15 +8,10 @@ class Robot:
         self.owner = owner  # To make sure the appropriate person is benefitting from the bot.
 
     def emergency_shut_off(self):
-        """ Checks for dangerous conditions and shuts down operations of robot to optimize damage control."""
-        # Note: may need to use smart contract functionality to ensure some kind of immutable state for this. OR potentially some governance structure.
-        # Abort conditions:
-        # 1.) temperature anomaly (electrical fire/ etc) Reason: minimize chance of fire/damage. Other mitigation: onboard firefighting capabilities.
-        # 2.) AWOL protocol (AI somehow becomes self aware/ damaging) Reason: minimize chance of human loss. Other mitigation: protocols for network, etc.
-        # 3.) Low power (power source depleted/malfunction) Reason: minimize money loss/ accidents due to poor timing.
-        # 4.) Lost (cant find a network and cant figure out where it is) Reason: minimize losses/accidents due to failures/ environmental variables.
-        # 5.) Damage/unforseen anomoly (shit happens...) Reason: need to make sure they are useful. broken robots not knowing they're broken would be bad.
-        # 6.) Tampering with internals (opening proprietary access ports/ machine) Reason: don't want bad actors reprogramming the bot :D
+        """ Checks for dangerous conditions and shuts down operations of robot to optimize damage control.
+
+        Check the readme for a list of concerns:
+        https://github.com/NFQTS/AI/blob/main/README.md"""
     
         red_flags = self.calculate_red_flags()
         
@@ -84,19 +79,30 @@ class Robot:
 
     def update(self):
         """ Update firmware, perform physical self-upgrading tasks if the model is capable."""
+        print("Requesting updates from hivemind.")
+        url = f"https://hivemind.nfqts.com/api/v1?{purpose}"
         # Add update logic
 
     def shutdown(self):
         """ Turn off the robot systems optimally."""
+        # Unsure how to handle I/O stuff... will probably just make this quit the code for now and once hardware is secured we will
+        # have to figure out the exact code required to perform this function.
         # Add shutdown logic
 
     def restart(self):
         """ 'Have you tried turning it off and on again?' - The IT Crowd."""
+        # Unsure how to handle I/O stuff... temporarily going to just restart the code fresh for testing convenience
+        # Will be converted to actual hardware control once hardware exists.
         # Add restart logic
 
     def calculate_red_flags(self):
         """ Calculate red flags for emergency shut-off based on sensor data and conditions."""
         self.check_status()
+        # Have a list of concerns to check for but still unsure about how to connect it all properly.
+        # Still need to organize all that better.
+        # Can be ignored for now because there isn't any potential damage that can be caused by bypassing this.
+        # Once those conditions exist... we should ensure it doesnt get turned off... maybe using blockchain to create an immutable check that has to be done to function.
+        # May require some kind of tamper-proof design... still unsure but trying to do due diligence.
         # Add your red flag calculation logic here
         return 0  # Placeholder for now
     
@@ -105,3 +111,5 @@ class Robot:
         # Going to have to connect to the network and pass auth checks.
         # Probably going to have to do hardware -> software compatibility checks, etc...
         # Add training logic
+    
+ 
