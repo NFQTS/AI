@@ -1,24 +1,16 @@
 class Robot:
     def __init__(self, id_number, robot_type, owner):
         self.id = id_number  # For hivemind use
-        self.task_queue = ["setup"]  # Initialize as an empty list
-        self.sensor_statuses = {}  # Needs to be able to store data about system health and environment.
+        self.task_queue = ["setup"]  # Creates a queue of actions for the robot to perform, running the setup function first.
+        self.sensor_statuses = {"Protocol Sensors": {}, # AI-powered code/functionality analysis to fine-tune performance/reliability.
+                                "Status Sensors": {}, # Traditional sensors like batter power, temperature... anything related to the physical unit.
+                                "Environmental Sensors": {} # Sensors and hardware that analyze the environment... cameras, gauges, etc...
+                                }
+        
         self.onboard_libraries = {}  # For storing custom protocols/functionality
         self.robot_type = robot_type  # To easily connect the bot to the correct APIs/services/functions
         self.owner = owner  # To make sure the appropriate person is benefitting from the bot.
 
-    def emergency_shut_off(self):
-        """ Checks for dangerous conditions and shuts down operations of robot to optimize damage control.
-
-        Check the readme for a list of concerns:
-        https://github.com/NFQTS/AI/blob/main/README.md"""
-    
-        red_flags = self.calculate_red_flags()
-        
-        if red_flags == 0:
-            return True
-        else:
-            print("Activating self-destruct sequence... maybe.")
 
     def check_status(self, owner_id):
         """ Runs a check of all sensors and systems to identify issues."""
@@ -83,17 +75,6 @@ class Robot:
         url = f"https://hivemind.nfqts.com/api/v1?{purpose}"
         # Add update logic
 
-    def shutdown(self):
-        """ Turn off the robot systems optimally."""
-        # Unsure how to handle I/O stuff... will probably just make this quit the code for now and once hardware is secured we will
-        # have to figure out the exact code required to perform this function.
-        # Add shutdown logic
-
-    def restart(self):
-        """ 'Have you tried turning it off and on again?' - The IT Crowd."""
-        # Unsure how to handle I/O stuff... temporarily going to just restart the code fresh for testing convenience
-        # Will be converted to actual hardware control once hardware exists.
-        # Add restart logic
 
     def calculate_red_flags(self):
         """ Calculate red flags for emergency shut-off based on sensor data and conditions."""
@@ -111,5 +92,42 @@ class Robot:
         # Going to have to connect to the network and pass auth checks.
         # Probably going to have to do hardware -> software compatibility checks, etc...
         # Add training logic
+
+
+########################################################################################################################
+################################ Important Functions (ON HOLD... NOTHING BELOW MATTERS) ################################
+########################################################################################################################
+
+
+    def emergency_shut_off(self):
+        """ Checks for dangerous conditions and shuts down operations of robot to optimize damage control.
+
+        Check the readme for a list of concerns:
+        https://github.com/NFQTS/AI/blob/main/README.md
+        
+        The purpose of this is to address the fears about AI head-on and do what we can to mitigate it."""
     
- 
+        red_flags = self.calculate_red_flags()
+        
+        if red_flags == 0:
+            return True
+        else:
+            print("Activating self-destruct sequence... maybe.")
+
+
+########################################################################################################################
+###########################################  I/O Functions (LEAVE FOR NOW)  ############################################
+########################################################################################################################
+
+    def shutdown(self):
+        """ Turn off the robot systems optimally."""
+        # Unsure how to handle I/O stuff... will probably just make this quit the code for now and once hardware is secured we will
+        # have to figure out the exact code required to perform this function.
+        # Add shutdown logic
+
+
+    def restart(self):
+        """ 'Have you tried turning it off and on again?' - The IT Crowd."""
+        # Unsure how to handle I/O stuff... temporarily going to just restart the code fresh for testing convenience
+        # Will be converted to actual hardware control once hardware exists.
+        # Add restart logic
