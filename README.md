@@ -3,10 +3,14 @@ Repo for providing public access to AI tools and services.
 
 
 NEED TO REMOVE FUNCTIONS THAT AREN'T ABSOLUTELY REQUIRED/STANDARD
-EXAMPLE: Navigation. Some models may be stationary?
 WILL HAVE TO DEEP DIVE EVERY SINGLE FUNCTION/DESIGN UNTIL WE GET IT RIGHT.
 
 File Guide:
+
+hivemind.py
+- Central brain for data collection/processing
+- The robots themselves should be kept fairly weak so they don't go rogue
+- Worried about single point of failure risk, but we can probably compartmentalize, or even create internal adversaries... like a group of advisors
 
 Core/core.py
 - Emergency Shut Off for safety purposes.
